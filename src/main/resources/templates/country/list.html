@@ -1,23 +1,36 @@
-<!--テンプレート作成-->
+<!--テンプレート作成　一覧：詳細画面に遷移するリンク、削除画面に遷移するリンクを追加-->
+<!--http://localhost:8080/country/list-->
+<!--詳細URLは「/ountry/detail/その国のコード」-->
+<!--削除URLは「/ountry/delete/その国のコード」-->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="utf-8">
-    <title>Tutorial of JPA</title>
+	<meta charset="utf-8">
+	<title>Tutorial of JPA</title>
 </head>
+
 <body>
-    <h1>Country一覧</h1>
-    <table>
-        <tr>
-            <th>コード</th>
-            <th>国名</th>
-            <th>人口</th>
-        </tr>
-        <tr th:each="data : ${countrylist}">
-            <td th:text="${data.code}"></td>
-            <td th:text="${data.name}"></td>
-            <td th:text="${data.population}"></td>
-        </tr>
-    </table>
+	<h1>Country一覧</h1>
+	<table>
+		<tr>
+			<th>コード</th>
+			<th>国名</th>
+			<th>人口</th>
+
+		</tr>
+		<tr th:each="data : ${countrylist}">
+			<td th:text="${data.code}"></td>
+			<td th:text="${data.name}"></td>
+			<td th:text="${data.population}"></td>
+
+			<!--リンクURLにクエリパラメータを設定する方法-->
+			<td><a href="@{/ｃuntry/detail/ABW(id=${param.id[0]})}">詳細</a></td>
+			<td><a href="@{/ｃuntry/delete/ABW(id=${param.id[0]})}">削除</a></td>
+			<!--プレースホルダ{aid}の記載がない場合、(id=${param.id[0]})はクエリパラメータを設定するというように意味が変わります（名前をaidからidに変更しています）-->
+
+		</tr>
+	</table>
 </body>
+
 </html>
