@@ -28,7 +28,7 @@ public class CountryController {
 		return "country/list";
 	}
 
-	// 詳細画面に遷移するリンク--URLリンク式 課題追記部分
+	//?詳細URLリンク式 課題追記部分
 		//リクエストマッピングのパスを一意にする: もし、同じパスを使用したい場合は、★メソッド間で異なるHTTPメソッドを使うか、クエリパラメータを使用して異なる振る舞いをするようにします。
 		@GetMapping("/detail")
 	    public String getLink(Model model) {
@@ -65,6 +65,13 @@ public class CountryController {
 	    public String deleteCountryForm(Model model) {
 	        return "country/delete";// country/delete.htmlに画面遷移
 	    }
+
+	    //? 削除リンク式　課題部分
+	    @GetMapping("/delete")
+	    public String getLink1(Model model) {
+	        model.addAttribute("id", "123");
+	        return "delete";//delete.html画面遷移
+		}
 
 	    // ----- 削除 -----
 	    @PostMapping("/delete")
