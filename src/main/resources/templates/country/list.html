@@ -17,19 +17,28 @@
 			<th>コード</th>
 			<th>国名</th>
 			<th>人口</th>
-
 		</tr>
+
 		<tr th:each="data : ${countrylist}">
 			<td th:text="${data.code}"></td>
 			<td th:text="${data.name}"></td>
 			<td th:text="${data.population}"></td>
 
-			<!--リンクURLにクエリパラメータを設定する方法-->
-			<td><a href="@{/ｃuntry/detail/ABW(id=${param.id[0]})}">詳細</a></td>
-			<td><a href="@{/ｃuntry/delete/ABW(id=${param.id[0]})}">削除</a></td>
-			<!--プレースホルダ{aid}の記載がない場合、(id=${param.id[0]})はクエリパラメータを設定するというように意味が変わります（名前をaidからidに変更しています）-->
+			<!--★苦戦-->
+			<td>
+				<!--コントローラー:@GetMapping("/detail")-->
+				<a th:href="@{/country/detail/{code}/(code=${data.code})}">詳細</a>
+				<!--<a th:href="@{/nextpage/{aid}(aid=${id})}">リンク</a>-->
+
+				<!--コントローラー:@GetMapping("/delete")-->
+				<a th:href="@{/country/delete/{code}/(code=${data.code})}">削除</a>
+				<!--別の記述方法：<a th:href="@{'/country/delete/'+${data.code}+'/'}">削除</a>-->
+			</td>
 
 		</tr>
+
+
+
 	</table>
 </body>
 

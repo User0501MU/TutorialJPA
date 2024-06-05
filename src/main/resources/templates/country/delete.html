@@ -13,6 +13,10 @@
     <form method="post" action="/country/delete">
         <input type="text" name="code" th:value="${code}">
         <button type="submit">送信</button>
+		<!--@GetMapping("/list")記述済-->
+
+		<!--削除画面: codeの値を設定。削除処理を行なわずに一覧画面へ戻るリンクを追加-->
     </form>
 </body>
 </html>
+

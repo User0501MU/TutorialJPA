@@ -15,6 +15,15 @@
             <tr><th>人口</th><td><input type="text" name="population" th:value="*{population}"></td></tr>
         </table>
         <button type="submit">送信</button>
+
+		<!--一覧に戻る画面遷移 クエリパラメータの取得 変数param-->
+		<!--@GetMapping("/list")記述済-->
+		<!--list.htmlへ戻る遷移　変数paramを使用して出来た-->
+		<a th:href="@{/country/list{code}(code=${param.code})}">一覧に戻る</a>
+		<!--★{}で囲まれた部分は、パラメーターを示します-->
+		<!--★param.codeは、リクエストパラメーターの中からcodeという名前のパラメーターの値を取得するための式-->
+
+
     </form>
 </body>
 </html>

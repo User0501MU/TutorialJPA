@@ -4,15 +4,13 @@ package com.techacademy16;
 import java.util.List;
 import java.util.Optional; // 追加
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional; // 追加
 
-@Service //DI（依存性の注入）
+@Service
 public class CountryService {
     private final CountryRepository repository;
 
-    @Autowired
     public CountryService(CountryRepository repository) {
         this.repository = repository;
     }
@@ -23,9 +21,7 @@ public class CountryService {
         return repository.findAll();
     }
 
-
-
- // ----- 追加:ここからSpring Data JPAによる追加、更新、削除 サービスの修正-----
+    // ----- 追加:ここから -----
     // 1件を検索して返す
     public Country getCountry(String code) {
         // findByIdで検索
@@ -49,4 +45,3 @@ public class CountryService {
     }
     // ----- 追加:ここまで -----
 }
-
