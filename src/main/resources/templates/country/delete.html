@@ -16,6 +16,10 @@
 		<!--@GetMapping("/list")記述済-->
 
 		<!--削除画面: codeの値を設定。削除処理を行なわずに一覧画面へ戻るリンクを追加-->
+		<!--一覧に戻る画面遷移 クエリパラメータの取得 変数param-->
+				<!--@GetMapping("/list")記述済-->
+				<!--list.htmlへ戻る遷移　変数paramを使用して出来た-->
+				<a th:href="@{/country/list{code}(code=${param.code})}">一覧に戻る</a>
     </form>
 </body>
 </html>

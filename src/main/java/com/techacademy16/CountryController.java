@@ -28,19 +28,19 @@ public class CountryController {
 		return "country/list";
 	}
 
-	// 詳細画面に遷移するリンク--URLリンク式 課題追記部分
-		//リクエストマッピングのパスを一意にする: もし、同じパスを使用したい場合は、★メソッド間で異なるHTTPメソッドを使うか、クエリパラメータを使用して異なる振る舞いをするようにします。
-		@GetMapping("/detail")
-	    public String getLink(Model model) {
-	        model.addAttribute("id", "123");
-	        return "detail";//datail.html画面遷移
-		}
+	//?
+	@GetMapping("/detail")
+    public String getLink(Model model) {
+        model.addAttribute("id", "123");
+        return "detail";//datail.html画面遷移
+	}
 
 
 		 // ----- 追加:ここから -----
 	    // ----- 詳細画面 -----
 	    @GetMapping(value = { "/detail", "/detail/{code}/" })
-	    public String getCountry(@PathVariable(name = "code", required = false) String code, Model model) {
+	    //★動詞＋名刺　getdetail　何処に遷移するか5wで、キャメル式
+	    public String getDetail(@PathVariable(name = "code", required = false) String code, Model model) {
 	        // codeが指定されていたら検索結果、無ければ空のクラスを設定
 	        Country country = code != null ? service.getCountry(code) : new Country();
 	        // Modelに登録
@@ -49,9 +49,9 @@ public class CountryController {
 	        return "country/detail";
 	    }
 
-	    // ----- 更新（追加） -----
+	    // ----- 更新（追加）送信 -----
 	    @PostMapping("/detail")
-	    public String postCountry(@RequestParam("code") String code, @RequestParam("name") String name,
+	    public String postDetail(@RequestParam("code") String code, @RequestParam("name") String name,
 	            @RequestParam("population") int population, Model model) {
 	        // 更新（追加）
 	        service.updateCountry(code, name, population);
@@ -65,6 +65,21 @@ public class CountryController {
 	    public String deleteCountryForm(Model model) {
 	        return "country/delete";// country/delete.htmlに画面遷移
 	    }
+
+	    //★削除遷移
+	    @GetMapping(value = { "/delete", "/delete/{code}/" })
+	    //★
+	    public String getDelete(@PathVariable(name = "code", required = false) String code, Model model) {
+	        // codeが指定されていたら検索結果、無ければ空のクラスを設定
+	        Country country = code != null ? service.getCountry(code) : new Country();
+	        // Modelに登録
+	        model.addAttribute("country", country);
+	        // country/detail.htmlに画面遷移
+	        return "country/delete";
+	    }
+
+
+
 
 	    // ----- 削除 -----
 	    @PostMapping("/delete")
